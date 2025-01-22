@@ -40,12 +40,10 @@ async function main() {
                     title: regexSearch
                 });
 
-                const totalPages = Math.ceil(total / limit);
 
                 callback(null, {
                     questions,
                     total,
-                    totalPages,
                     page,
                     limit
                 });
