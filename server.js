@@ -31,16 +31,21 @@ async function main() {
             try {
                 const { page = 1, limit = 5, search = "" } = call.request;
                 const skip = (page - 1) * limit;
+                const regexSearch = new RegExp(search, 'i');
                 const questions = await Question.find(
-                    { title: new RegExp(search, 'i') }
+                    { title: regexSearch }
                 ).skip(skip)
                     .limit(limit);
                 const total = await Question.countDocuments({
-                    title: new RegExp(search, 'i')
+                    title: regexSearch
                 });
+
+                const totalPages = Math.ceil(total / limit);
+
                 callback(null, {
                     questions,
                     total,
+                    totalPages,
                     page,
                     limit
                 });
