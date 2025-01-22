@@ -28,13 +28,9 @@ This project consists of a gRPC server and client alongside an Express.js REST A
 
 "Running the Application" :
 
-  Start gRPC Server
+  Start gRPC Server & Express Server
 
-    node server.js
-
-  Start Express Server
-
-    node main.js
+    npm start
 
 "gRPC Server" :
 
