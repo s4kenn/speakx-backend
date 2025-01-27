@@ -1,109 +1,109 @@
-This project consists of a gRPC server and client alongside an Express.js REST API to handle questions data stored in MongoDB.
+# SpeakX Backend
 
-"Project Structure" :
-  gRPC Server: Handles requests to fetch paginated and searchable question data.
+A Node.js backend service using Express.js and gRPC for handling question-related operations.
 
-  gRPC Client: Communicates with the gRPC server to retrieve data.
+## Developed By
+Aditya Singh  
+GitHub: [s4kenn](https://github.com/s4kenn)
 
-  Express API: Provides RESTful endpoints to interact with the question data.
+## Project Structure
 
+```
+├── proto/
+│   └── question.proto
+├── config/
+│   └── dbConnection.js
+├── models/
+│   └── questions.js
+├── routes/
+│   └── routes.js
+├── main.js
+├── server.js
+├── client.js
+└── .env
+```
 
-"Installation" :
+## Features
 
-  Clone the repository:
+- REST API endpoints using Express.js
+- gRPC server implementation for question services
+- MongoDB integration
+- Pagination and search functionality
+- CORS enabled
+- Environment variable configuration
 
-    git clone https://github.com/s4kenn/speakx-backend.git
+## Prerequisites
 
-  Install dependencies:
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
 
-    npm i
+## Installation
 
-  Create a .env file in the root directory and configure the following:
+```bash
+# Clone the repository
+git clone https://github.com/s4kenn/speakx-backend.git
 
-    MONGO_URI=<your-mongodb-uri>
-    GRPC_PORT=50051
-    PORT=5000
+# Navigate to project directory
+cd speakx-backend
 
-  Start MongoDB (if not already running).
+# Install dependencies
+npm install
+```
 
-"Running the Application" :
+## Environment Variables
 
-  Start gRPC Server & Express Server
+Create a `.env` file in the root directory:
 
-    npm start
+```plaintext
+PORT=5000
+GRPC_PORT=50051
+MONGODB_URI=your_mongodb_connection_string
+```
 
-"gRPC Server" :
+## Running the Application
 
-  The gRPC server loads the question.proto file and exposes the following service:
+```bash
+# Start the Express server
+npm run start:express
 
-  getQuestions: Retrieves paginated and searchable questions from the MongoDB database.
+# Start the gRPC server
+npm run start:grpc
+```
 
-"Features" :
+## API Endpoints
 
-  Pagination support
+The REST API is available at `/api` with the following endpoints:
+- GET `/api/questions` - Fetch questions with pagination and search
 
-  Search functionality using regex
+## gRPC Services
 
-  MongoDB connection using Mongoose
+The gRPC server provides the following services:
+- `getQuestions` - Retrieves paginated questions with search functionality
 
-  Environment variable support with dotenv
+## Technical Details
 
-"gRPC Server Code Highlights" :
+**Express Server (main.js)**
+- Handles HTTP requests
+- Implements CORS
+- Processes JSON and URL-encoded bodies
 
-  Proto File Path: ./proto/question.proto
+**gRPC Server (server.js)**
+- Implements question service
+- Supports pagination and search
+- Configurable message size limits
+- MongoDB integration
 
-  Service Name: QuestionService
+**gRPC Client (client.js)**
+- Provides connection to gRPC server
+- Configurable message size limits
+- Environment-based port configuration
 
-  Functionality:
+## Contributing
 
-    Accepts page, limit, and search query parameters
-
-    Responds with questions and total number of documents
-
-"gRPC Client" :
-
-  The gRPC client connects to the server and provides a way to fetch questions using the defined service.
-
-  Client Setup
-
-    Loads the same proto definition.
-
-    Connects to localhost:<GRPC_PORT>.
-
-    Handles data retrieval with specified request limits.
-
-"Express API" :
-
-  The Express.js server acts as a REST API to handle HTTP requests.
-
-  Routes
-
-    GET /api/questions - Fetch questions with optional query parameters (page, limit, search).
-
-  Features
-
-    CORS enabled
-
-    JSON request body parsing
-
-    URL-encoded data handling
-
-"Technologies Used" :
-
-  Node.js
-
-  Express.js
-
-  gRPC
-
-  MongoDB with Mongoose
-
-  dotenv
-
-  cors
-
-
-
-Contributors
-  Aditya Singh
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
